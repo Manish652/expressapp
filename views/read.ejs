@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD Operations</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen flex flex-col items-center">
+    
+    <div class="w-full flex justify-center mt-10 py-5 bg-gray-800 shadow-md rounded-lg">
+        <a class="text-blue-500  text-3xl font-bold px-6 py-3 border-2 border-transparent rounded-lg transition-all duration-300 hover:text-blue-700 hover:border-blue-500 hover:bg-gray-900" href="/">← Back to Home</a>
+    </div>
+    <h1 class="text-4xl font-extrabold mt-6 tracking-tight mb-6 text-center text-gray-100">All Users</h1>
+    <div class="w-full max-w-5xl grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4">
+        <% if (user.length > 0) { %>
+            <% user.forEach(function(e) { %>
+                <div class="bg-gray-800 rounded-xl shadow-lg p-6 transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                    <div class="overflow-hidden rounded-xl bg-red-500 flex items-center justify-center">
+                        <img class="w-full h-52 object-cover" src="<%= e.image %>" alt="">
+                    </div>
+                    
+                    <div class="mt-5 text-center">
+                        <h3 class="text-2xl font-semibold text-white"><%= e.name %></h3>
+                        <h5 class="text-gray-400 text-lg mb-4"><%= e.email %></h5>
+                    </div>
+                    
+                    <div class="flex justify-center gap-4 mt-4">
+                        <a class="px-5 py-3 bg-blue-500 hover:bg-blue-600 text-white font-medium rounded-lg transition shadow-md" href="/edit/<%= e.id %>">Edit User</a>
+                        <a class="px-5 py-3 bg-red-500 hover:bg-red-600 text-white font-medium rounded-lg transition shadow-md" href="/delete/<%= e._id %>">Delete User</a>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <h3 class="text-red-500 text-3xl text-center col-span-full mt-10">No users yet</h3>
+        <% } %>
+    </div>
+</body>
+</html>
+
+
